@@ -1,0 +1,27 @@
+DATASET:
+  ROOT: 'data/'
+  NAME: 'officehome'
+  SOURCE_DOMAINS: ['Art', 'Clipart', 'Product', 'RealWorld']
+  TARGET_DOMAINS: ['Art', 'Clipart', 'Product', 'RealWorld']
+  NUM_CLASS: 65
+
+DATALOADER:
+  BATCH_SIZE: 32
+
+OPTIM:
+  NAME: 'Adadelta'
+  SOURCE_LR: 0.1
+  BASE_LR_MULT: 0.1
+
+TRAINER:
+  MAX_EPOCHS: 40
+  TRAIN_ON_SOURCE : False
+  MAX_UDA_EPOCHS: 0
+
+ADA:
+  DA : 'ft'
+  AL : 'random'
+  ROUNDS : [10, 12, 14, 16, 18]
+
+SEED: 0  # 0,1,2,3,4 for five random experiments
+
