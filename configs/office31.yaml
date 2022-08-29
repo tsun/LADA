@@ -1,0 +1,32 @@
+DATASET:
+  ROOT: 'data/'
+  NAME: 'office31'
+  SOURCE_DOMAINS: ['webcam', 'amazon', 'dslr']
+  TARGET_DOMAINS: ['webcam', 'amazon', 'dslr']
+  NUM_CLASS: 31
+
+DATALOADER:
+  BATCH_SIZE: 32
+
+OPTIM:
+  NAME: 'Adadelta'
+  SOURCE_LR: 0.1
+  BASE_LR_MULT: 0.1
+
+TRAINER:
+  MAX_EPOCHS: 50
+  TRAIN_ON_SOURCE : False
+  MAX_UDA_EPOCHS: 0
+
+ADA:
+  DA : 'ft'
+  AL : 'random'
+  ROUNDS : [10, 12, 14, 16, 18]
+
+LADA:
+  S_K : 5
+  S_Kc : 5
+  A_K : 5
+
+SEED: 0  # 0,1,2,3,4 for five random experiments
+
