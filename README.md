@@ -42,7 +42,7 @@ python main.py --cfg configs/officehome.yaml --gpu 0 --log log/oh/LADA  ADA.AL L
 ```
 
 ## Acknowledgements
-The pipline and implementation of baseline methods are adapted from [CLUE](https://github.com/virajprabhu/CLUE). We adopt configuration files as [EADA](https://github.com/BIT-DA/EADA).
+The pipline and implementation of baseline methods are adapted from [CLUE](https://github.com/virajprabhu/CLUE) and [deep-active-learning](https://github.com/ej0cl6/deep-active-learning). We adopt configuration files as [EADA](https://github.com/BIT-DA/EADA).
 
 
 ## Citation
