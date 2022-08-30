@@ -48,7 +48,7 @@ The pipline and implementation of baseline methods are adapted from [CLUE](https
 ## Citation
 If you find our paper and code useful for your research, please consider citing
 ```bibtex
-@article{sun2022prior,
+@article{sun2022local,
     author    = {Sun, Tao and Lu, Cheng and Ling, Haibin},
     title     = {Local Context-Aware Active Domain Adaptation},
     journal   = {arXiv preprint arXiv:2208.12856},
