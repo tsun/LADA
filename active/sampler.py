@@ -184,17 +184,14 @@ class SamplingStrategy:
                                                      drop_last=False)
 
         # create joint src_tgt_sup loader as commonly used
-        if self.cfg.DATASET.NAME == 'digits' or self.cfg.DATASET.NAME == 'toy':
-            joint_sup_loader = None
-        else:
-            joint_list = [self.src_dset.train_dataset.samples[_] for _ in self.src_dset.train_idx] + \
+        joint_list = [self.src_dset.train_dataset.samples[_] for _ in self.src_dset.train_idx] + \
                         [self.tgt_dset.train_dataset.samples[_] for _ in self.tgt_dset.train_idx[self.idxs_lb]]
 
-            # use source train transform
-            join_transform = self.src_dset.get_dsets()[0].transform
-            joint_train_ds = ImageList(joint_list, root=self.cfg.DATASET.ROOT, transform=join_transform)
-            joint_sup_loader = DataLoader(joint_train_ds, batch_size=self.cfg.DATALOADER.BATCH_SIZE, shuffle=True,
-                                              drop_last=False, num_workers=self.cfg.DATALOADER.NUM_WORKERS)
+        # use source train transform
+        join_transform = self.src_dset.get_dsets()[0].transform
+        joint_train_ds = ImageList(joint_list, root=self.cfg.DATASET.ROOT, transform=join_transform)
+        joint_sup_loader = DataLoader(joint_train_ds, batch_size=self.cfg.DATALOADER.BATCH_SIZE, shuffle=True,
+                                          drop_last=False, num_workers=self.cfg.DATALOADER.NUM_WORKERS)
 
         return src_loader, tgt_loader, tgt_sup_loader, tgt_unsup_loader, joint_sup_loader
 
