@@ -1,2 +1,2 @@
 from .sampler import *
-from .LADAsampler import *
+from .LASsampler import *

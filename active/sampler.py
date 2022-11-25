@@ -210,7 +210,7 @@ class SamplingStrategy:
 
         if self.cfg.ADA.DA in ['dann']:
             solver.solve(epoch, self.discrim, self.opt_discrim)
-        elif 'LADA' in self.cfg.ADA.DA:
+        elif self.cfg.ADA.DA in ['LAA', 'RAA']:
             train_sampler = ActualSequentialSampler(self.tgt_dset.train_idx)
             seq_query_loader = torch.utils.data.DataLoader(self.query_dset, sampler=train_sampler,
                                                            num_workers=self.cfg.DATALOADER.NUM_WORKERS,

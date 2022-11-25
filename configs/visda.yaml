@@ -14,18 +14,19 @@ OPTIM:
   BASE_LR_MULT: 0.1
 
 TRAINER:
-  MAX_EPOCHS: 20
-  TRAIN_ON_SOURCE : False
+  MAX_EPOCHS: 10
+  TRAIN_ON_SOURCE : True
   MAX_UDA_EPOCHS: 0
+  MAX_SOURCE_EPOCHS : 1
 
 ADA:
   DA : 'ft'
   AL : 'random'
-  ROUNDS : [10, 12, 14, 16, 18]
+  ROUNDS : [0,2,4,6,8]
 
 LADA:
   S_K : 10
-  S_Kc : 5
+  S_M : 5
   A_K : 10
 
 SEED: 0  # 0,1,2,3,4 for five random experiments

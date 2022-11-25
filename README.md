@@ -2,12 +2,11 @@
 
 
 ## Abstract
-Active Domain Adaptation (ADA) queries the label of selected target samples to help adapting a model from a related source domain to a target domain. It has attracted increasing attention recently due to its promising performance with minimal labeling cost. Nevertheless, existing ADA methods have not fully exploited the local context of queried data, which is important to ADA, especially when the domain gap is large.
+Active Domain Adaptation (ADA) queries the labels of a small number of selected target samples to help adapting a model from a source domain to a target domain. The local context of queried data is important, especially when the domain gap is large. However, this has not been fully explored by existing ADA works. 
 
-In this paper, we propose a novel framework of Local context-aware Active Domain Adaptation (LADA), which is composed of two key modules. The Local context-aware Active Selection (LAS) module selects target samples whose class probability predictions are inconsistent with their neighbors. The Local context-aware Model Adaptation (LMA) module refines a model with both queried samples and their expanded neighbors, regularized by a context-preserving loss.
+In this paper, we propose a Local context-aware ADA framework, named LADA, to address this issue. To select informative target samples, we devise a novel criterion based on the local inconsistency of model predictions. Since the labeling budget is usually small, fine-tuning model on only queried data can be inefficient. We progressively augment labeled target data with the confident neighbors in a class-balanced manner. 
 
-Extensive experiments show that LAS selects more informative samples than existing active selection strategies. Furthermore, equipped with LMA, the full LADA method outperforms state-of-the-art ADA solutions on various benchmarks.
-
+Experiments validate that the proposed criterion chooses more informative target samples than existing active selection strategies. Furthermore, our full method surpasses recent ADA arts on various benchmarks. 
 <p align="center">
     <img src="fig/framework.png" width="900"> <br>
 </p>
@@ -20,7 +19,7 @@ We experimented with python==3.8, pytorch==1.8.0, cudatoolkit==11.1.
 To start, download the [office31](https://faculty.cc.gatech.edu/~judy/domainadapt/), [Office-Home](https://www.hemanthdv.org/officeHomeDataset.html), [VisDA](https://ai.bu.edu/visda-2017/) datasets and set up the path in ./data folder.
 
 ### Training
-To obtain results of baseline active selection criteria on office home,
+To obtain results of baseline active selection criteria on office home with 5% labeling budget,
 ```shell
 for ADA_DA in 'ft' 'mme'; do
   for ADA_AL in 'random' 'entropy' 'margin' 'coreset' 'leastConfidence' 'BADGE' 'AADA' 'CLUE'; do
@@ -29,16 +28,16 @@ for ADA_DA in 'ft' 'mme'; do
 done
 ```
 
-To reproduce results of LADA on office home,
+To reproduce results of LADA on office home with 5% labeling budget,
 ```shell
 # LAS + fine-tuning with CE loss
-python main.py --cfg configs/officehome.yaml --gpu 0 --log log/oh/LADA  ADA.AL LADA  ADA.DA ft
+python main.py --cfg configs/officehome.yaml --gpu 0 --log log/oh/LADA  ADA.AL LAS  ADA.DA ft
 # LAS + MME model adaptation
-python main.py --cfg configs/officehome.yaml --gpu 0 --log log/oh/LADA  ADA.AL LADA  ADA.DA mme
-# LAS + LMA w/o random data augmentation
-python main.py --cfg configs/officehome.yaml --gpu 0 --log log/oh/LADA  ADA.AL LADA  ADA.DA LADA
-# LAS + LMA w/ random data augmentation
-python main.py --cfg configs/officehome.yaml --gpu 0 --log log/oh/LADA  ADA.AL LADA  ADA.DA LADA  LADA.A_RAND_NUM 1
+python main.py --cfg configs/officehome.yaml --gpu 0 --log log/oh/LADA  ADA.AL LAS  ADA.DA mme
+# LAS + Random Anchor set Augmentation (RAA)
+python main.py --cfg configs/officehome.yaml --gpu 0 --log log/oh/LADA  ADA.AL LAS  ADA.DA RAA
+# LAS + Local context-aware Anchor set Augmentation (LAA)
+python main.py --cfg configs/officehome.yaml --gpu 0 --log log/oh/LADA  ADA.AL LAS  ADA.DA LAA 
 ```
 
 ## Acknowledgements
