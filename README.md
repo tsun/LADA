@@ -1,6 +1,10 @@
 # Local Context-Aware Active Domain Adaptation               
 
-
+Pytorch implementation of LADA. 
+> [Local Context-Aware Active Domain Adaptation](https://arxiv.org/abs/2208.12856)                 
+> Tao Sun, Cheng Lu, and Haibin Ling                 
+> *ICCV 2023* 
+> 
 ## Abstract
 Active Domain Adaptation (ADA) queries the labels of a small number of selected target samples to help adapting a model from a source domain to a target domain. The local context of queried data is important, especially when the domain gap is large. However, this has not been fully explored by existing ADA works. 
 
@@ -22,7 +26,7 @@ To start, download the [office31](https://faculty.cc.gatech.edu/~judy/domainadap
 To obtain results of baseline active selection criteria on office home with 5% labeling budget,
 ```shell
 for ADA_DA in 'ft' 'mme'; do
-  for ADA_AL in 'random' 'entropy' 'margin' 'coreset' 'leastConfidence' 'BADGE' 'AADA' 'CLUE'; do
+  for ADA_AL in 'random' 'entropy' 'margin' 'coreset' 'leastConfidence' 'BADGE' 'AADA' 'CLUE' 'MHP'; do
     python main.py --cfg configs/officehome.yaml --gpu 0 --log log/oh/baseline  ADA.AL $ADA_AL  ADA.DA $ADA_DA
   done
 done
@@ -40,6 +44,8 @@ python main.py --cfg configs/officehome.yaml --gpu 0 --log log/oh/LADA  ADA.AL L
 python main.py --cfg configs/officehome.yaml --gpu 0 --log log/oh/LADA  ADA.AL LAS  ADA.DA LAA 
 ```
 
+More commands can be found in *run.sh*.
+
 ## Acknowledgements
 The pipline and implementation of baseline methods are adapted from [CLUE](https://github.com/virajprabhu/CLUE) and [deep-active-learning](https://github.com/ej0cl6/deep-active-learning). We adopt configuration files as [EADA](https://github.com/BIT-DA/EADA).
 
@@ -50,7 +56,7 @@ If you find our paper and code useful for your research, please consider citing
 @article{sun2022local,
     author    = {Sun, Tao and Lu, Cheng and Ling, Haibin},
     title     = {Local Context-Aware Active Domain Adaptation},
-    journal   = {arXiv preprint arXiv:2208.12856},
-    year      = {2022}
+    journal   = {IEEE/CVF International Conference on Computer Vision},
+    year      = {2023}
 }
 ```
