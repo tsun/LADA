@@ -166,7 +166,7 @@ class DANNSolver(BaseSolver):
 
     def solve(self, epoch, disc, disc_opt):
         """
-        Semisupervised adaptation via DANN: XE on labeled source + XE on labeled target + \
+        Semi-supervised adaptation via DANN: XE on labeled source + XE on labeled target + \
                                     ent. minimization on target + DANN on source<->target
         """
         gan_criterion = nn.CrossEntropyLoss()

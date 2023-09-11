@@ -22,6 +22,35 @@ We experimented with python==3.8, pytorch==1.8.0, cudatoolkit==11.1.
 
 To start, download the [office31](https://faculty.cc.gatech.edu/~judy/domainadapt/), [Office-Home](https://www.hemanthdv.org/officeHomeDataset.html), [VisDA](https://ai.bu.edu/visda-2017/) datasets and set up the path in ./data folder.
 
+### Supported methods
+| Active Criteria |                                                                                 Paper                                                                                 |           Implementation           |
+|-----------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------:|
+| Random          |                                                                                   -                                                                                   |  [random](active/sampler.py)      | 
+| Entropy         |                                                                                   -                                                                                   |  [entropy](active/sampler.py)      |
+| Margin          |                                                                                   -                                                                                   |  [margin](active/sampler.py)      |
+| LeastConfidence |                                                                                   -                                                                                   |  [leastConfidence](active/sampler.py)      | 
+| CoreSet         |                                                         [ICLR 2018](https://openreview.net/pdf?id=H1aIuk-RW)                                                          |  [coreset](active/sampler.py)      |
+| AADA            |                    [WACV 2020](https://openaccess.thecvf.com/content_WACV_2020/papers/Su_Active_Adversarial_Domain_Adaptation_WACV_2020_paper.pdf)                    |  [AADA](active/sampler.py)      |
+| BADGE           |                                                         [ICLR 2020](https://openreview.net/pdf?id=ryghZJBKPS)                                                         |  [BADGE](active/sampler.py)      |                              
+| CLUE            | [ICCV 2021](https://openaccess.thecvf.com/content/ICCV2021/papers/Prabhu_Active_Domain_Adaptation_via_Clustering_Uncertainty-Weighted_Embeddings_ICCV_2021_paper.pdf) |  [CLUE](active/sampler.py)      |
+| MHP             |     [CVPR 2023](https://openaccess.thecvf.com/content/CVPR2023/papers/Wang_MHPL_Minimum_Happy_Points_Learning_for_Active_Source_Free_Domain_CVPR_2023_paper.pdf)      | [MHP](active/MHPsampler.py) |
+| LAS (ours)      |                                                             [ICCV 2023](https://arxiv.org/abs/2208.12856)                                                             | [LAS](active/LASsampler.py) |
+
+
+| Domain Adaptation             |                                                                              Paper                                                                               |        Implementation        |
+|-------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------:|:----------------------------:|
+| Fine-tuning (joint label set) |                                                                                -                                                                                 | [ft_joint](active/solver.py) |
+| Fine-tuning                   |                                                                                -                                                                                 |    [ft](active/solver.py)    |
+| DANN                          |      [JMLR 2016](https://jmlr.org/papers/volume17/15-239/15-239.pdf)                                                                           |   [dann](active/solver.py)   |
+| MME                           |       [ICCV 2019](https://openaccess.thecvf.com/content_ICCV_2019/papers/Saito_Semi-Supervised_Domain_Adaptation_via_Minimax_Entropy_ICCV_2019_paper.pdf)        |  [mme](active/MMEsolver.py)  |
+| MCC                           |                                       [ECCV 2020](https://www.ecva.net/papers/eccv_2020/papers_ECCV/papers/123660460.pdf)                                        |  [MCC](active/MCCsolver.py)  |
+| CDAC                          | [CVPR 2021](https://openaccess.thecvf.com/content/CVPR2021/papers/Li_Cross-Domain_Adaptive_Clustering_for_Semi-Supervised_Domain_Adaptation_CVPR_2021_paper.pdf) | [CDAC](solver/CDACsolver.py) | 
+| RAA (ours)                    |                                                          [ICCV 2023](https://arxiv.org/abs/2208.12856)                                                           |  [RAA](solver/PAAsolver.py)  | 
+| LAA (ours)                    |                                                          [ICCV 2023](https://arxiv.org/abs/2208.12856)                                                           |  [LAA](solver/PAAsolver.py)  | 
+
+
+
+
 ### Training
 To obtain results of baseline active selection criteria on office home with 5% labeling budget,
 ```shell

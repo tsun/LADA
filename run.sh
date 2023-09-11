@@ -1,4 +1,4 @@
-
+# Table 1
 # office-home 5%-budget
 python main.py --cfg configs/officehome.yaml --gpu 0 --log log/oh/LADA ADA.AL LAS ADA.DA ft
 python main.py --cfg configs/officehome.yaml --gpu 0 --log log/oh/LADA ADA.AL LAS ADA.DA mme
