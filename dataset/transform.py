@@ -3,6 +3,7 @@ from PIL import Image
 from .randaugment import RandAugment
 from torchvision.transforms import (Resize, Compose, ToTensor, Normalize, CenterCrop, RandomCrop,
                                     RandomResizedCrop, RandomHorizontalFlip)
+from .randaugmentMC import RandAugmentMC
 
 class ResizeImage():
     def __init__(self, size):
@@ -74,3 +75,12 @@ rand_transform = transforms.Compose([
     transforms.Normalize(mean=[0.485, 0.456, 0.406],
                          std=[0.229, 0.224, 0.225]),
 ])
+
+rand_transform2 = transforms.Compose([
+            ResizeImage(256),
+            transforms.RandomHorizontalFlip(),
+            transforms.RandomCrop(224),
+            RandAugmentMC(n=2, m=10),
+            transforms.ToTensor(),
+            transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
+        ])
